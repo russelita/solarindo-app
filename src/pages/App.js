@@ -12,6 +12,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import  Ionicons  from 'react-native-vector-icons/Ionicons';
 
+import Login from "./Login.js";
 import Splashscreen from "./Splashscreen.js";
 import TabHome from "./TabHome.js";
 import TabSettings from "./TabSettings.js";
@@ -75,12 +76,13 @@ function App() {
   return (
     <NavigationContainer>
 
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Login">
 		
 		{/* Tab Navigation */}
 		<Stack.Screen name="Home" component={TabScreen} options={{ headerShown: false }}/>
 
 		{/* Page Navigation */}
+		<Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
 		<Stack.Screen name="Main" component={Main} options={{ headerShown: false }} />
 		<Stack.Screen name="Details" component={Details} options={Details.navigationOptions}/>
 		<Stack.Screen name="ReportDetails" component={ReportDetails} options={Details.navigationOptions}/>
