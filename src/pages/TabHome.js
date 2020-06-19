@@ -2,7 +2,7 @@ import React from 'react';
 import { StatusBar , View , Text , ActivityIndicator, Button, TextInput, TouchableOpacity, ScrollView} from 'react-native';
 import { Header } from '../component';
 import style from '../component/Style';
-import AsyncStorage from '@react-native-community/async-storage';
+
 
 export default class TabHome extends React.Component {
 
@@ -11,27 +11,13 @@ export default class TabHome extends React.Component {
 		super(props)
 		this.state={
             isLoading: 'flex',
-			dataBooking: [],
-			token:''
+			dataBooking: []
 			
         }
         
 	}
 	
-
-
-	 async componentDidMount(){
-		try{
-			const token =  await AsyncStorage.getItem('@token_key');
-			this.setState({token:token})
-		}catch(e){
-			alert(e)
-		}
-	}
-    
     render() {
-		alert(this.state.token)
-
         return (
             <View style={style.container}>
 				<StatusBar backgroundColor="#0B108C" barStyle="light-content"></StatusBar>

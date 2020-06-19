@@ -11,6 +11,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import  Ionicons  from 'react-native-vector-icons/Ionicons';
+import {Provider} from 'react-redux'
+
 
 import Login from "./Login.js";
 import Splashscreen from "./Splashscreen.js";
@@ -22,7 +24,7 @@ import TabProfile from "./TabProfile.js";
 import Details from "./Details.js";
 import ReportDetails from "./ReportDetails.js";
 import Main from "./Main.js";
-
+import store from '../redux/store'
 
 const Stack = createStackNavigator();
 
@@ -83,23 +85,25 @@ function TabScreen() {
 
 function App() {
   return (
-    <NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
 
-      <Stack.Navigator initialRouteName="Login">
-		
-		{/* Tab Navigation */}
-		<Stack.Screen name="Home" component={TabScreen} options={{ headerShown: false }}/>
+        <Stack.Navigator initialRouteName="Login">
 
-		{/* Page Navigation */}
-		<Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
-		<Stack.Screen name="Main" component={Main} options={{ headerShown: false }} />
-		<Stack.Screen name="Details" component={Details} options={Details.navigationOptions}/>
-		<Stack.Screen name="ReportDetails" component={ReportDetails} options={Details.navigationOptions}/>
-		<Stack.Screen name="Settings" component={TabSettings} />
-		<Stack.Screen name="Splashscreen" component={Splashscreen} options={{ headerShown: false }}/>
+        {/* Tab Navigation */}
+        <Stack.Screen name="Home" component={TabScreen} options={{ headerShown: false }}/>
 
-      </Stack.Navigator>
-    </NavigationContainer>
+        {/* Page Navigation */}
+        <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+        <Stack.Screen name="Main" component={Main} options={{ headerShown: false }} />
+        <Stack.Screen name="Details" component={Details} options={Details.navigationOptions}/>
+        <Stack.Screen name="ReportDetails" component={ReportDetails} options={Details.navigationOptions}/>
+        <Stack.Screen name="Settings" component={TabSettings} />
+        <Stack.Screen name="Splashscreen" component={Splashscreen} options={{ headerShown: false }}/>
+
+        </Stack.Navigator>
+        </NavigationContainer>
+    </Provider>
   );
 }
 

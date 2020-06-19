@@ -15,9 +15,10 @@ export default class Login extends React.Component {
 		}
     }
 
-    async storeToken(token){
+
+    async storedata(data){
         try{
-            await AsyncStorage.setItem("@token_key", token);
+            await AsyncStorage.setItem("@user_data", data);
         }catch(e){
             alert(e)
         }
@@ -28,8 +29,16 @@ export default class Login extends React.Component {
         this.setState({loading:true})
         axios({method:'POST',url:"http://solarindo.indorobotik.com/api/v1/auth",data:{email:this.state.email,password:this.state.password}})
             .then((res)=>{
-                this.storeToken(res.data.token)
-                this.props.navigation.push('Home')
+                if(res.data.status==200){
+                    var data = JSON.stringify(res.data)
+                    this.storedata(data)
+                    this.setState({loading:false})
+                    this.props.navigation.push('Home')
+                }else{
+                    this.setState({loading:false})
+
+                    alert('error login')
+                }
             }).catch((err)=>{
                 Alert(err)
             })
