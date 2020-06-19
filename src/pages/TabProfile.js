@@ -38,6 +38,7 @@ class TabProfile extends React.Component{
 		try{
 			AsyncStorage.getItem('@user_data').then((res)=>{
                 const data = JSON.parse(res)
+                this.setState({dataUser:data})
                 this.props.dispatch(GET_USER(data))
             
             });
@@ -48,7 +49,6 @@ class TabProfile extends React.Component{
 	}
 
     render(){
-
         return(
             <View style={{flex:1,backgroundColor:'white'}}>
                 <StatusBar backgroundColor="#0B108C" barStyle="light-content"></StatusBar>
@@ -57,7 +57,7 @@ class TabProfile extends React.Component{
                     <Ionicons name="ios-contact" color={"#9DA8C1"} size={130} />
                 </View>
                 <View style={{marginTop:50,paddingRight:20,paddingLeft:20}}>
-                    <FormProfile label="Nama :" value="Rizal"/>
+                    <FormProfile label="Nama :" value="riza"/>
                     <FormProfile label="Email :" value="admin@solarindo.com"/>
                     <FormProfile label="Phone :" value="01234"/>
 
