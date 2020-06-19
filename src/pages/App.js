@@ -18,6 +18,7 @@ import TabHome from "./TabHome.js";
 import TabSettings from "./TabSettings.js";
 import TabLightingLists from "./TabLightingLists.js";
 import TabReports from "./TabReports.js";
+import TabProfile from "./TabProfile.js";
 import Details from "./Details.js";
 import ReportDetails from "./ReportDetails.js";
 import Main from "./Main.js";
@@ -67,6 +68,14 @@ function TabScreen() {
 			tabBarIcon: ({ color, size }) => (
 			  <Ionicons name="ios-settings" color={color} size={size} />
 			),
+		  }}/>
+
+      <Tab.Screen name="Profile" component={TabProfile} 
+        options={{
+          tabBarLabel: 'Profile',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="ios-contact" color={color} size={size} />
+          ),
 		  }}/>
       </Tab.Navigator>
   );

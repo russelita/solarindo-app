@@ -1,8 +1,9 @@
 import React from 'react';
-import { View,Text,Button,AsyncStorage, Alert } from 'react-native';
+import { View,Text, Alert, ActivityIndicator } from 'react-native';
 import { TouchableOpacity, TextInput } from 'react-native-gesture-handler';
 import axios from 'axios'
-
+import { StackNavigator, NavigationActions } from '@react-navigation/native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default class Login extends React.Component {
     constructor(props){
@@ -14,16 +15,25 @@ export default class Login extends React.Component {
 		}
     }
 
-    
+    async storeToken(token){
+        try{
+            await AsyncStorage.setItem("@token_key", token);
+        }catch(e){
+            alert(e)
+        }
+    }
 
 
     onLogin = ()=>{
         this.setState({loading:true})
         axios({method:'POST',url:"http://solarindo.indorobotik.com/api/v1/auth",data:{email:this.state.email,password:this.state.password}})
-            .then(async(res)=>{
-                AsyncStorage.setItem('tokenlogin', res.token);
+            .then((res)=>{
+                this.storeToken(res.data.token)
                 this.props.navigation.push('Home')
+            }).catch((err)=>{
+                Alert(err)
             })
+
     }
     
 
@@ -50,9 +60,10 @@ export default class Login extends React.Component {
                 </View>
                 <TouchableOpacity onPress={this.onLogin}>
                     <View style={{height:50,backgroundColor:'#003CC0',justifyContent:'center',alignItems:'center',borderRadius:6}}>
-                        <Text style={{color:'white',fontSize:16,fontWeight:'800',fontWeight:'bold'}}>
-                            {this.state.loading?'Loading':'Login'}
-                        </Text>
+                        {this.state.loading?<ActivityIndicator size="small" color="white"/>:<Text style={{color:'white',fontSize:16,fontWeight:'800',fontWeight:'bold'}}>
+                        {this.state.loading?'Loading':'Login'}
+                    </Text>}
+                        
                     </View>
                 </TouchableOpacity>
             </View>
