@@ -82,7 +82,7 @@ export default class TabReports extends React.Component {
 				<ScrollView>
 					<ActivityIndicator style={{marginBottom: 15, display: this.state.isLoading}} color={'#0B108C'} animating={true}/>
 					<View style={style.containerPanel}>
-					{this.renderLighting(this.state.dataLighting)}
+					{this.renderLighting.bind(this.state.dataLighting)}
 					</View>
 				</ScrollView>
             </View>

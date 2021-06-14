@@ -16,8 +16,8 @@ export default class TabSettings extends React.Component {
     }
     
     login = () => {
-        console.log("toLogin");
-        this.props.navigation.navigate("Login");
+        // console.log("toLogin");
+        this.props.navigation.navigate('Login');
       }
     
       pageAddress = () => {

@@ -6,7 +6,7 @@ import TabHome from "./TabHome.js";
 export default class Main extends React.Component {
 
 
-    UNSAFE_componentWillMount() {
+    componentDidMount() {
         this.setState({
             view : <Splashscreen />
         });

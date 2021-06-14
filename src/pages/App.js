@@ -20,6 +20,7 @@ import TabReports from "./TabReports.js";
 import Details from "./Details.js";
 import ReportDetails from "./ReportDetails.js";
 import Main from "./Main.js";
+import Login from "./Login.js";
 
 
 const Stack = createStackNavigator();
@@ -78,7 +79,8 @@ function App() {
       <Stack.Navigator initialRouteName="Home">
 		
 		{/* Tab Navigation */}
-		<Stack.Screen name="Home" component={TabScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="Home" component={TabScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
 
 		{/* Page Navigation */}
 		<Stack.Screen name="Main" component={Main} options={{ headerShown: false }} />
